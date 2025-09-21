@@ -1,0 +1,32 @@
+{
+  "name": "resumegenius-ai",
+  "version": "1.0.0",
+  "description": "AI-powered ATS-optimized resume builder",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0",
+    "dev": "live-server --port=3000",
+    "build": "echo 'No build process needed for static site'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/ResumeGenius-AI.git"
+  },
+  "keywords": [
+    "resume",
+    "ats",
+    "ai",
+    "job",
+    "career",
+    "applicant-tracking-system"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/ResumeGenius-AI/issues"
+  },
+  "homepage": "https://github.com/your-username/ResumeGenius-AI#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
