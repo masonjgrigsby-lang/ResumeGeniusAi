@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeGenius AI - Create ATS-Optimized Resumes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #9ca3af;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(79, 70, 229, 0.05), rgba(79, 70, 229, 0.1)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234f46e5" opacity="0.05"/><path d="M0 0L100 100" stroke="%234f46e5" stroke-width="2" opacity="0.1"/><path d="M100 0L0 100" stroke="%234f46e5" stroke-width="2" opacity="0.1"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #0da271;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #d97706;
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .comparison-section {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: white;
+        }
+        
+        .checkmark {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .x-mark {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: #f5f7fa;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .pricing {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .pricing-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg) translateX(1.5rem) translateY(-1rem);
+            width: 150px;
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured .price {
+            color: white;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--secondary);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .pricing-card.featured .pricing-features li:before {
+            color: var(--accent);
+        }
+        
+        .testimonials {
+            padding: 5rem 0;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .faq {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .faq-answer {
+            color: var(--gray);
+        }
+        
+        .cta {
+            padding: 5rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .steps, .pricing-cards, .testimonial-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step, .pricing-card, .testimonial-card {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-file-alt"></i></span>
+                    ResumeGenius AI
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#comparison">Why Choose Us</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Success Stories</a></li>
+                    <li><a href="#" class="btn" id="get-started-btn">Get Started</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>AI-Powered Resume Builder</h1>
+            <p>Create ATS-optimized resumes that get you noticed. Our AI analyzes job descriptions and tailors your resume to beat applicant tracking systems.</p>
+            <a href="#" class="btn btn-accent" id="create-resume-btn"><i class="fas fa-magic"></i> Create Your Resume</a>
+            <a href="#comparison" class="btn btn-secondary">See Why We're Better</a>
+            <div style="margin-top: 2rem; font-size: 0.9rem; color: var(--primary-dark);">
+                <i class="fas fa-star"></i> <strong>4.9/5</strong> from 2,500+ job seekers
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why ResumeGenius AI?</h2>
+            <p class="section-subtitle">We use advanced AI to optimize your resume for both human readers and applicant tracking systems</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Optimization</h3>
+                    <p>Our AI analyzes job descriptions and optimizes your resume with the right keywords to beat ATS systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>ATS-Friendly Templates</h3>
+                    <p>Professionally designed templates that are guaranteed to parse correctly in any applicant tracking system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Increase Interviews</h3>
+                    <p>Users report 3x more interview requests after optimizing their resumes with our AI technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <h2 class="section-title">Why ResumeGenius AI Outperforms Free Alternatives</h2>
+            <p class="section-subtitle">While free resume builders might seem attractive, they lack the sophisticated technology that makes ResumeGenius AI the superior choice</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>ResumeGenius AI</th>
+                        <th>Free Resume Builders</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Advanced ATS Optimization</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Full optimization</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Limited or none</td>
+                    </tr>
+                    <tr>
+                        <td>Industry-Specific Keyword Database</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> 10,000+ keywords</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Generic keywords</td>
+                    </tr>
+                    <tr>
+                        <td>Job Description Analysis</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Deep analysis</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Not available</td>
+                    </tr>
+                    <tr>
+                        <td>Customized Achievement Statements</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Power-impact format</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Basic templates</td>
+                    </tr>
+                    <tr>
+                        <td>Real-Time ATS Score</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Instant feedback</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Not available</td>
+                    </tr>
+                    <tr>
+                        <td>Cover Letter Generator</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Tailored to job</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Not available</td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn Profile Optimization</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Full integration</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Not available</td>
+                    </tr>
+                    <tr>
+                        <td>Interview Rate Guarantee</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> 3x more interviews</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> No guarantee</td>
+                    </tr>
+                    <tr>
+                        <td>Data Privacy</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Encrypted, never sold</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Data often sold</td>
+                    </tr>
+                    <tr>
+                        <td>Human Expert Review Option</td>
+                        <td class="checkmark"><i class="fas fa-check-circle"></i> Available</td>
+                        <td class="x-mark"><i class="fas fa-times-circle"></i> Not available</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn btn-accent">Experience the Difference</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Create your perfect resume in just a few minutes</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Your Resume</h3>
+                    <p>Start with an existing resume or build from scratch with our easy-to-use editor.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>AI Analysis</h3>
+                    <p>Our AI scans your resume and compares it against your target job descriptions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Recommendations</h3>
+                    <p>Receive specific suggestions for improvements, keywords, and formatting changes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Download & Apply</h3>
+                    <p>Download your optimized resume and start getting more interview requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <p class="section-subtitle">Choose the plan that works best for your job search needs</p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$19<span>/one-time</span></div>
+                    <ul class="pricing-features">
+                        <li>1 Resume Analysis</li>
+                        <li>ATS Compatibility Check</li>
+                        <li>Basic Keyword Suggestions</li>
+                        <li>Standard Templates</li>
+                        <li>7-Day Support</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3>Professional</h3>
+                    <div class="price">$39<span>/one-time</span></div>
+                    <ul class="pricing-features">
+                        <li>3 Resume Analyses</li>
+                        <li>Advanced ATS Optimization</li>
+                        <li>Job Description Matching</li>
+                        <li>All Templates + Customization</li>
+                        <li>Cover Letter Generator</li>
+                        <li>30-Day Support</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Executive</h3>
+                    <div class="price">$79<span>/one-time</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Analyses</li>
+                        <li>Premium ATS Optimization</li>
+                        <li>LinkedIn Profile Optimization</li>
+                        <li>Executive Templates</li>
+                        <li>Interview Preparation Guide</li>
+                        <li>60-Day Priority Support</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: var(--gray);">
+                <i class="fas fa-lock"></i> All plans include secure payment and 14-day money-back guarantee
+            </p>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            <p class="section-subtitle">Hear from people who landed their dream jobs with our AI-powered resumes</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "After using ResumeGenius AI, I went from getting no responses to 5 interview requests in just two weeks. I landed my dream job at Google!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SD</div>
+                        <div>
+                            <strong>Sarah D.</strong>
+                            <div>Software Engineer at Google</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The ATS optimization feature is a game-changer. I was applying for months with no luck, but after optimizing my resume, I got three interviews in one week!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MJ</div>
+                        <div>
+                            <strong>Michael J.</strong>
+                            <div>Marketing Manager</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Worth every penny! The AI suggestions helped me highlight skills I didn't realize were valuable. I doubled my salary with my new job."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AL</div>
+                        <div>
+                            <strong>Amanda L.</strong>
+                            <div>Product Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Job Search?</h2>
+            <p>Join over 50,000 job seekers who have landed interviews at companies like Google, Amazon, and Microsoft</p>
+            <a href="#" class="btn btn-accent" id="cta-btn">Create Your AI-Optimized Resume</a>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">14-day money-back guarantee · No subscription required</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center;">
+                <span class="logo-icon"><i class="fas fa-file-alt"></i></span>
+                ResumeGenius AI
+            </div>
+            <ul class="footer-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#comparison">Why Choose Us</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <p>&copy; 2023 ResumeGenius AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation for the comparison table
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkmarks = document.querySelectorAll('.checkmark');
+            const xmarks = document.querySelectorAll('.x-mark');
+            
+            // Animate checkmarks
+            checkmarks.forEach((mark, index) => {
+                setTimeout(() => {
+                    mark.style.opacity = '1';
+                    mark.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        mark.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+            
+            // Animate x-marks
+            xmarks.forEach((mark, index) => {
+                setTimeout(() => {
+                    mark.style.opacity = '1';
+                    mark.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        mark.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
