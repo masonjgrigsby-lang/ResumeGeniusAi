@@ -838,3 +838,74 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeGenius AI - Payment Test</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('pk_live_51PXg9pH85JX1shA4UTYJBHTGq5jBFT0nEpvZF46uTRydqnj14r');
+        
+        async function handlePayment(plan) {
+            try {
+                const response = await fetch('/.netlify/functions/create-checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        priceId: plan === 'basic' ? 'price_basic' : 
+                                 plan === 'pro' ? 'price_pro' : 'price_executive' 
+                    }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const session = await response.json();
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id,
+                });
+                
+                if (result.error) {
+                    alert('Payment Error: ' + result.error.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Payment failed. Please try again.');
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3730a3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Payments - ResumeGenius AI</h1>
+    <button onclick="handlePayment('basic')">Buy Basic - $19</button>
+    <button onclick="handlePayment('pro')">Buy Professional - $39</button>
+    <button onclick="handlePayment('executive')">Buy Executive - $79</button>
+</body>
+</html>
