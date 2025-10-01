@@ -6,7 +6,7 @@
   NODE_VERSION = "18"
 
 [context.production.environment]
-  STRIPE_PUBLIC_KEY = pk_live_51PXp9pH0SJX1shAzp4uP2WSOIVjNDvkUtc4ONm5f0CctQMBVtwVzDPaK5kr7RJD4uZ84TItPGTBKlAbNYVkiHqEH00yC9aWqab
+pk_live_51PXp9pH0SJX1shAzp4uP2WSOIVjNDvkUtc4ONm5f0CctQMBVtwVzDPaK5kr7RJD4uZ84TItPGTBKlAbNYVkiHqEH00yC9aWqab
   OPENAI_API_KEY = 
 [[redirects]]
   from = "/*"
