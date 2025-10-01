@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResumeGenius AI - Professional Resume Builder</title>
+    <title>ResumeGenius AI - One-Time Payment Resume Builder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://js.stripe.com/v3/"></script>
     <style>
@@ -15,18 +15,19 @@
         }
 
         :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
+            --primary: #2A4B7C;
+            --secondary: #4A6FA5;
+            --accent: #FF6B35;
+            --light: #F8F9FA;
             --dark: #212529;
-            --success: #4bb543;
+            --success: #28a745;
             --gray: #6c757d;
             --light-gray: #e9ecef;
+            --border: #dee2e6;
         }
 
         body {
-            background-color: var(--light);
+            background-color: white;
             color: var(--dark);
             line-height: 1.6;
         }
@@ -113,7 +114,7 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
         }
 
@@ -141,14 +142,14 @@
         }
 
         .btn-primary {
-            background-color: white;
-            color: var(--primary);
-            border: 2px solid white;
+            background-color: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
         }
 
         .btn-primary:hover {
-            background-color: transparent;
-            color: white;
+            background-color: #e55a2b;
+            border-color: #e55a2b;
         }
 
         .btn-secondary {
@@ -162,9 +163,10 @@
             color: var(--primary);
         }
 
-        /* Features Section */
-        .section {
+        /* Why Choose Us Section */
+        .why-us {
             padding: 80px 0;
+            background-color: var(--light);
         }
 
         .section-title {
@@ -184,6 +186,46 @@
             margin: 0 auto;
         }
 
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        /* AI Features Section */
+        .ai-features {
+            padding: 80px 0;
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -196,6 +238,7 @@
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
+            border-left: 4px solid var(--primary);
         }
 
         .feature-card:hover {
@@ -222,13 +265,16 @@
 
         /* Pricing Section */
         .pricing {
-            background-color: var(--light-gray);
+            padding: 80px 0;
+            background-color: var(--light);
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .pricing-card {
@@ -238,6 +284,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
             position: relative;
+            border: 2px solid var(--border);
         }
 
         .pricing-card:hover {
@@ -245,7 +292,7 @@
         }
 
         .pricing-card.popular {
-            border: 2px solid var(--primary);
+            border: 2px solid var(--accent);
             transform: scale(1.05);
         }
 
@@ -253,10 +300,10 @@
             position: absolute;
             top: 0;
             right: 0;
-            background-color: var(--primary);
+            background-color: var(--accent);
             color: white;
-            padding: 5px 15px;
-            font-size: 0.8rem;
+            padding: 8px 20px;
+            font-size: 0.9rem;
             font-weight: 600;
             border-bottom-left-radius: 5px;
         }
@@ -264,7 +311,7 @@
         .pricing-header {
             padding: 30px;
             text-align: center;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border);
         }
 
         .pricing-name {
@@ -280,6 +327,13 @@
 
         .pricing-period {
             color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .pricing-savings {
+            color: var(--success);
+            font-weight: 600;
+            margin-top: 5px;
             font-size: 0.9rem;
         }
 
@@ -309,6 +363,10 @@
         }
 
         /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -320,6 +378,7 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
         }
 
         .testimonial-text {
@@ -356,6 +415,11 @@
         }
 
         /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
@@ -363,7 +427,7 @@
 
         .faq-item {
             margin-bottom: 20px;
-            border: 1px solid var(--light-gray);
+            border: 1px solid var(--border);
             border-radius: 5px;
             overflow: hidden;
         }
@@ -431,6 +495,7 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .social-links a {
@@ -501,13 +566,13 @@
 
         .form-group input {
             padding: 12px;
-            border: 1px solid var(--light-gray);
+            border: 1px solid var(--border);
             border-radius: 5px;
             font-size: 1rem;
         }
 
         .stripe-button {
-            background-color: var(--primary);
+            background-color: var(--accent);
             color: white;
             border: none;
             padding: 15px;
@@ -519,7 +584,7 @@
         }
 
         .stripe-button:hover {
-            background-color: var(--secondary);
+            background-color: #e55a2b;
         }
 
         /* Responsive Styles */
@@ -554,6 +619,11 @@
             .pricing-card.popular {
                 transform: none;
             }
+
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
@@ -567,7 +637,8 @@
                     <span>ResumeGenius AI</span>
                 </div>
                 <div class="nav-links">
-                    <a href="#features">Features</a>
+                    <a href="#why-us">Why Us</a>
+                    <a href="#ai-features">AI Features</a>
                     <a href="#pricing">Pricing</a>
                     <a href="#testimonials">Testimonials</a>
                     <a href="#faq">FAQ</a>
@@ -583,96 +654,153 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Create Professional Resumes with AI</h1>
-            <p>ResumeGenius AI helps you create ATS-optimized resumes that get you noticed by employers and land your dream job faster.</p>
+            <h1>Create Professional Resumes with Advanced AI</h1>
+            <p>One-time payment. Lifetime access. No subscriptions. Get hired faster with our AI-powered resume builder that outperforms the competition.</p>
             <div class="hero-buttons">
-                <a href="#pricing" class="btn btn-primary">View Plans</a>
-                <a href="#features" class="btn btn-secondary">Learn More</a>
+                <a href="#pricing" class="btn btn-primary">View One-Time Plans</a>
+                <a href="#why-us" class="btn btn-secondary">Why We're Better</a>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="section">
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-us">
         <div class="container">
             <div class="section-title">
-                <h2>Powerful Features</h2>
-                <p>Our AI-powered platform provides everything you need to create a standout resume</p>
+                <h2>Why ResumeGenius AI Outperforms the Competition</h2>
+                <p>We're not just another resume builder - we're your career advancement partner</p>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>ResumeGenius AI</th>
+                        <th>Other Resume Builders</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Advanced AI Content Generation</td>
+                        <td class="check">✓ Industry-specific AI trained on successful resumes</td>
+                        <td class="cross">✗ Basic templates with limited customization</td>
+                    </tr>
+                    <tr>
+                        <td>Pricing Model</td>
+                        <td class="check">✓ One-time payment, lifetime access</td>
+                        <td class="cross">✗ Monthly subscriptions that add up over time</td>
+                    </tr>
+                    <tr>
+                        <td>ATS Optimization</td>
+                        <td class="check">✓ Advanced algorithm ensures 98% ATS compatibility</td>
+                        <td class="cross">✗ Basic formatting only</td>
+                    </tr>
+                    <tr>
+                        <td>Job Description Matching</td>
+                        <td class="check">✓ AI analyzes job descriptions and tailors your resume</td>
+                        <td class="cross">✗ Manual adjustments required</td>
+                    </tr>
+                    <tr>
+                        <td>Cover Letter Generation</td>
+                        <td class="check">✓ AI creates personalized cover letters in seconds</td>
+                        <td class="cross">✗ Separate service or additional fee</td>
+                    </tr>
+                    <tr>
+                        <td>Resume Analysis</td>
+                        <td class="check">✓ Detailed scoring with actionable improvements</td>
+                        <td class="cross">✗ Basic spell check only</td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td class="check">✓ Priority email & chat support included</td>
+                        <td class="cross">✗ Limited to paying subscribers only</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section id="ai-features" class="ai-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Advanced AI-Powered Features</h2>
+                <p>Our proprietary AI technology gives you the competitive edge in today's job market</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <h3>AI-Powered Writing</h3>
-                    <p>Our advanced AI helps you craft professional, impactful content that highlights your skills and experience.</p>
+                    <h3>Intelligent Content Generation</h3>
+                    <p>Our AI doesn't just fill templates - it understands your industry and creates compelling, professional content that highlights your unique value.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <h3>ATS Optimization</h3>
-                    <p>Ensure your resume passes through Applicant Tracking Systems with our optimization technology.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Professional Templates</h3>
-                    <p>Choose from dozens of professionally designed templates that suit any industry or role.</p>
+                    <h3>Smart ATS Optimization</h3>
+                    <p>Go beyond basic formatting. Our algorithm analyzes thousands of successful resumes to ensure yours passes through applicant tracking systems.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Job Description Matching</h3>
-                    <p>Tailor your resume to specific job descriptions to increase your chances of getting an interview.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Cover Letter Generator</h3>
-                    <p>Create compelling cover letters that complement your resume and increase your application success.</p>
+                    <h3>Job-Specific Tailoring</h3>
+                    <p>Paste a job description and our AI will automatically adjust your resume to match keywords, skills, and requirements for that specific role.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Resume Analysis</h3>
-                    <p>Get detailed feedback on your resume with actionable suggestions for improvement.</p>
+                    <h3>Performance Analytics</h3>
+                    <p>Get detailed insights on how your resume performs with actionable suggestions to improve your chances of getting interviews.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3>Cover Letter AI</h3>
+                    <p>Generate compelling cover letters that complement your resume and reference specific job requirements in seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Lifetime Updates</h3>
+                    <p>As hiring trends evolve, so does our AI. Get free lifetime updates to ensure your resume stays current with market demands.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="section pricing">
+    <section id="pricing" class="pricing">
         <div class="container">
             <div class="section-title">
-                <h2>Choose Your Plan</h2>
-                <p>Select the plan that works best for your job search needs</p>
+                <h2>Simple One-Time Pricing</h2>
+                <p>No subscriptions, no recurring fees. Pay once and get lifetime access.</p>
             </div>
             <div class="pricing-grid">
-                <!-- Free Plan -->
+                <!-- Basic Plan -->
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3 class="pricing-name">Free</h3>
-                        <div class="pricing-price">$0</div>
-                        <div class="pricing-period">forever</div>
+                        <h3 class="pricing-name">Essential</h3>
+                        <div class="pricing-price">$49</div>
+                        <div class="pricing-period">one-time payment</div>
                     </div>
                     <div class="pricing-features">
                         <ul>
                             <li><i class="fas fa-check"></i> Basic Keyword Suggestions</li>
                             <li><i class="fas fa-check"></i> Standard Templates</li>
-                            <li><i class="fas fa-check"></i> 7-Day Support</li>
+                            <li><i class="fas fa-check"></i> 7-Day Email Support</li>
                             <li><i class="fas fa-times"></i> Advanced ATS Optimization</li>
                             <li><i class="fas fa-times"></i> Job Description Matching</li>
                             <li><i class="fas fa-times"></i> Cover Letter Generator</li>
                         </ul>
                     </div>
                     <div class="pricing-button">
-                        <button class="btn btn-secondary" style="width: 100%;">Get Started</button>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openStripeModal('essential')">Get Started</button>
                     </div>
                 </div>
 
@@ -681,8 +809,9 @@
                     <div class="popular-tag">MOST POPULAR</div>
                     <div class="pricing-header">
                         <h3 class="pricing-name">Professional</h3>
-                        <div class="pricing-price">$39</div>
-                        <div class="pricing-period">per month</div>
+                        <div class="pricing-price">$97</div>
+                        <div class="pricing-period">one-time payment</div>
+                        <div class="pricing-savings">Save 60% vs. annual subscriptions</div>
                     </div>
                     <div class="pricing-features">
                         <ul>
@@ -691,7 +820,7 @@
                             <li><i class="fas fa-check"></i> Job Description Matching</li>
                             <li><i class="fas fa-check"></i> All Templates + Customization</li>
                             <li><i class="fas fa-check"></i> Cover Letter Generator</li>
-                            <li><i class="fas fa-check"></i> 30-Day Support</li>
+                            <li><i class="fas fa-check"></i> 30-Day Priority Support</li>
                         </ul>
                     </div>
                     <div class="pricing-button">
@@ -699,12 +828,13 @@
                     </div>
                 </div>
 
-                <!-- Enterprise Plan -->
+                <!-- Lifetime Plan -->
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3 class="pricing-name">Enterprise</h3>
-                        <div class="pricing-price">$99</div>
-                        <div class="pricing-period">per month</div>
+                        <h3 class="pricing-name">Lifetime Pro</h3>
+                        <div class="pricing-price">$197</div>
+                        <div class="pricing-period">one-time payment</div>
+                        <div class="pricing-savings">Best value - unlimited access</div>
                     </div>
                     <div class="pricing-features">
                         <ul>
@@ -713,12 +843,12 @@
                             <li><i class="fas fa-check"></i> Job Description Matching</li>
                             <li><i class="fas fa-check"></i> All Templates + Customization</li>
                             <li><i class="fas fa-check"></i> Cover Letter Generator</li>
-                            <li><i class="fas fa-check"></i> Priority 24/7 Support</li>
-                            <li><i class="fas fa-check"></i> Team Collaboration Tools</li>
+                            <li><i class="fas fa-check"></i> Lifetime Priority Support</li>
+                            <li><i class="fas fa-check"></i> Future AI Features Included</li>
                         </ul>
                     </div>
                     <div class="pricing-button">
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openStripeModal('enterprise')">Get Started</button>
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openStripeModal('lifetime')">Get Started</button>
                     </div>
                 </div>
             </div>
@@ -726,40 +856,40 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section">
+    <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What Our Users Say</h2>
-                <p>Thousands of job seekers have landed their dream jobs with ResumeGenius AI</p>
+                <h2>Success Stories</h2>
+                <p>See how ResumeGenius AI helped professionals land their dream jobs</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "ResumeGenius AI helped me transform my resume from average to outstanding. I got three interview calls within a week of using their service!"
+                        "I was skeptical about AI resume builders, but ResumeGenius exceeded my expectations. The one-time payment saved me hundreds compared to subscription services, and I landed a job with a 25% salary increase within 3 weeks!"
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">JS</div>
                         <div class="author-info">
                             <h4>Jessica Smith</h4>
-                            <p>Marketing Manager</p>
+                            <p>Marketing Director</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "The ATS optimization feature is a game-changer. My resume used to get lost in the system, but now I'm getting responses from top companies."
+                        "The ATS optimization feature is incredible. My resume used to get lost in the system, but after using ResumeGenius AI, I started getting interview requests from companies I'd been trying to get into for years."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">MR</div>
                         <div class="author-info">
                             <h4>Michael Rodriguez</h4>
-                            <p>Software Engineer</p>
+                            <p>Senior Software Engineer</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "I was struggling with my career change, but ResumeGenius AI helped me reframe my experience in a way that appealed to my target industry."
+                        "As someone changing careers, I needed help reframing my experience. The AI content generation was a game-changer - it highlighted transferable skills I hadn't even considered. Worth every penny of the one-time fee."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">SC</div>
@@ -774,47 +904,47 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="section">
+    <section id="faq" class="faq">
         <div class="container">
             <div class="section-title">
                 <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about ResumeGenius AI</p>
+                <p>Get answers to common questions about ResumeGenius AI</p>
             </div>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">
-                        How does the AI resume builder work?
+                        How is ResumeGenius AI different from other resume builders?
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        Our AI analyzes your experience, skills, and the job you're targeting to create a professionally written, ATS-optimized resume. It suggests powerful action verbs, quantifiable achievements, and industry-specific keywords.
+                        Unlike basic template-based services, ResumeGenius AI uses advanced machine learning trained on thousands of successful resumes. We offer one-time payments instead of subscriptions, advanced ATS optimization that actually works, and AI that generates content specific to your industry and target roles.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        What is ATS optimization?
+                        What does "one-time payment" actually include?
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        ATS (Applicant Tracking System) optimization ensures your resume is formatted and worded in a way that passes through automated screening systems used by most companies today. This increases your chances of having your resume seen by human recruiters.
+                        With our one-time payment model, you pay once and get lifetime access to the plan you purchase. This includes all current features and future updates. There are no hidden fees, recurring charges, or feature limitations after purchase.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        Can I cancel my subscription anytime?
+                        How does the AI content generation work?
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        Yes, you can cancel your subscription at any time. Your account will remain active until the end of your current billing period.
+                        Our AI analyzes your experience, skills, and target industry to generate professional, impactful content. It uses natural language processing to create compelling bullet points, optimize for keywords, and ensure your resume stands out to both human recruiters and ATS systems.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        How secure is my personal information?
+                        Is there a money-back guarantee?
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        We take data security seriously. All your information is encrypted and stored securely. We never share your personal data with third parties without your consent.
+                        Yes! We offer a 30-day money-back guarantee. If you're not satisfied with the results, simply contact our support team for a full refund.
                     </div>
                 </div>
             </div>
@@ -827,7 +957,7 @@
             <div class="footer-grid">
                 <div class="footer-column">
                     <h3>ResumeGenius AI</h3>
-                    <p>Creating professional resumes with the power of AI to help you land your dream job faster.</p>
+                    <p>Advanced AI-powered resume builder with one-time payment options. Create professional, ATS-optimized resumes that get results.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -838,10 +968,10 @@
                 <div class="footer-column">
                     <h3>Product</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Templates</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#ai-features">AI Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -858,7 +988,7 @@
                     <ul class="footer-links">
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -872,7 +1002,7 @@
     <div id="stripeModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2 class="modal-title" id="modalPlanTitle">Complete Your Purchase</h2>
+            <h2 class="modal-title" id="modalPlanTitle">Complete Your One-Time Purchase</h2>
             <form id="stripeForm" class="stripe-form">
                 <div class="form-group">
                     <label for="name">Full Name</label>
@@ -892,6 +1022,9 @@
                     <span id="button-text">Pay Now</span>
                     <div id="spinner" class="spinner hidden"></div>
                 </button>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: var(--gray);">
+                    <i class="fas fa-lock"></i> Your payment is secure and encrypted
+                </p>
             </form>
         </div>
     </div>
@@ -921,10 +1054,12 @@
             const modal = document.getElementById('stripeModal');
             const title = document.getElementById('modalPlanTitle');
             
-            if (plan === 'professional') {
-                title.textContent = 'Professional Plan - $39/month';
-            } else if (plan === 'enterprise') {
-                title.textContent = 'Enterprise Plan - $99/month';
+            if (plan === 'essential') {
+                title.textContent = 'Essential Plan - $49 (One-Time Payment)';
+            } else if (plan === 'professional') {
+                title.textContent = 'Professional Plan - $97 (One-Time Payment)';
+            } else if (plan === 'lifetime') {
+                title.textContent = 'Lifetime Pro Plan - $197 (One-Time Payment)';
             }
             
             modal.style.display = 'flex';
@@ -965,7 +1100,7 @@
                 // Simulate API call
                 setTimeout(() => {
                     // Show success message
-                    alert('Payment successful! Thank you for your purchase.');
+                    alert('Payment successful! Thank you for your purchase. You now have lifetime access to ResumeGenius AI.');
                     
                     // Reset form
                     form.reset();
@@ -998,7 +1133,7 @@
                 width: 20px;
                 height: 20px;
                 border-radius: 50%;
-                border-left-color: #09f;
+                border-left-color: var(--accent);
                 animation: spin 1s linear infinite;
                 display: inline-block;
                 margin-left: 10px;
@@ -1011,6 +1146,18 @@
             @keyframes spin {
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
             }
         `;
         document.head.appendChild(style);
