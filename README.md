@@ -1,35 +1,19 @@
-# ResumeGenius AI - ATS-Optimized Resume Builder
+# ResumeGenius AI
 
-ResumeGenius AI is an AI-powered resume builder that helps job seekers create ATS-optimized resumes that get noticed by employers and pass through Applicant Tracking Systems.
+Advanced AI-powered resume builder with one-time payment options. Create professional, ATS-optimized resumes that get results.
 
 ## Features
 
-- AI-powered resume analysis and optimization
-- ATS-friendly templates
-- Industry-specific keyword suggestions
-- Real-time ATS scoring
-- Cover letter generator
-- LinkedIn profile optimization
+- 🤖 Advanced AI content generation
+- 📊 ATS optimization (98% compatibility)
+- 🎯 Job description matching
+- 💼 Professional templates
+- 📝 Cover letter generator
+- 💰 One-time payment, no subscriptions
+- 🔄 Lifetime updates included
 
-## Setup Instructions
+## Quick Start
 
-1. Clone this repository
-2. Deploy to Netlify by connecting your GitHub account
-3. Set up environment variables for Stripe and any API keys
-4. Customize the content to match your brand
-
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your Netlify settings:
-
-- `STRIPE_PUBLIC_KEY` - Your Stripe publishable key
-- `STRIPE_SECRET_KEY` - Your Stripe secret key
-- `OPENAI_API_KEY` - Your OpenAI API key (if using AI features)
-
-## Deployment
-
-This site is designed to be deployed on Netlify. Connect your GitHub repository to Netlify for automatic deployments.
-
-## Support
-
-For support, email support@resumegeniusai.com or join our Slack channel.
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/resumegenius-ai.git
