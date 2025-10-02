@@ -6,8 +6,19 @@
   NODE_VERSION = "18"
 
 [context.production.environment]
+pk_live_51PXp9pH0SJX1shAzp4uP2WSOIVjNDvkUtc4ONm5f0CctQMBVtwVzDPaK5kr7RJD4uZ84TItPGTBKlAbNYVkiHqEH00yC9aWqab
+prod_T61BztmfmxvWks
+prod_T61Aq1Bb4hDowG
+prod_T5rsH50Dex278F
+curl https://api.openai.com/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4.1",
+    "tools": [{ "type": "web_search_preview" }],
+    "input": "What was a positive news story from today?"
+  }'
 
-  OPENAI_API_KEY = 
 [[redirects]]
   from = "/*"
   to = "/index.html"
